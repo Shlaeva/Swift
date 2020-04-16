@@ -50,20 +50,20 @@ class GameScene: SKScene {
         clockwiseButton.name = "clockwiseButton"
         self.addChild(clockwiseButton)
         
-        func createApple() {
-            let randX = CGFloat(arc4random_uniform(UInt32(view.scene!.frame.maxX - 5)) + 1)
-            let randY = CGFloat(arc4random_uniform(UInt32(view.scene!.frame.maxY - 5)) + 1)
-            let apple = Apple(position: CGPoint(x: randX, y: randY))
-            self.addChild(apple)
-        }
         createApple()
-        
         
         snake = Snake(atPoint: CGPoint(x: view.scene!.frame.midX, y: view.scene!.frame.midY))
         self.addChild(snake!)
         
-        
     }
+    
+    func createApple() {
+        let randX = CGFloat(arc4random_uniform(UInt32(view!.scene!.frame.maxX - 5)) + 1)
+        let randY = CGFloat(arc4random_uniform(UInt32(view!.scene!.frame.maxY - 5)) + 1)
+        let apple = Apple(position: CGPoint(x: randX, y: randY))
+        self.addChild(apple)
+    }
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -120,9 +120,13 @@ extension GameScene: SKPhysicsContactDelegate {
             createApple()
             
         case CollisionCategories.EdgeBody:
-            break
+            scene?.removeAllChildren()
+            scene?.didMove(to: view!)
+
+        case CollisionCategories.Snake:
+            scene?.removeAllChildren()
             
-            default:
+        default:
             break
         
         }
