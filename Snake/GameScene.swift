@@ -56,7 +56,7 @@ class GameScene: SKScene {
             let apple = Apple(position: CGPoint(x: randX, y: randY))
             self.addChild(apple)
         }
-//        createApple()
+        createApple()
         
         
         snake = Snake(atPoint: CGPoint(x: view.scene!.frame.midX, y: view.scene!.frame.midY))
