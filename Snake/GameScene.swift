@@ -122,9 +122,6 @@ extension GameScene: SKPhysicsContactDelegate {
         case CollisionCategories.EdgeBody:
             scene?.removeAllChildren()
             scene?.didMove(to: view!)
-
-        case CollisionCategories.Snake:
-            scene?.removeAllChildren()
             
         default:
             break
